@@ -1,0 +1,2 @@
+:root { font-family: Arial, Helvetica, sans-serif; color: #203342; background: #f3f6f8; font-synthesis: none; line-height: 1.5; }
+body { margin: 0; min-width: 320px; }a { color: #125d79; }h1, h2, h3 { line-height: 1.25; }button, input, textarea, a { outline-offset: 4px; }#root { min-height: 100vh; }

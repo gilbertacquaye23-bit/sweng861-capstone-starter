@@ -1,0 +1,14 @@
+.app { min-height: 100vh; }
+.navbar { background: #143349; color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.navbar h1 { margin: 0; font-size: 30px; }.navbar p { margin: 4px 0 0; }.navbar nav { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }.navbar a { color: white; }
+.page { max-width: 1050px; margin: 28px auto; padding: 0 20px; }.page-header { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
+.card { background: white; padding: 28px; border: 1px solid #dce3e9; border-radius: 10px; margin-bottom: 20px; }
+.form-group { margin: 16px 0; }.form-group label { display: block; font-weight: 600; margin-bottom: 7px; }
+input, textarea { box-sizing: border-box; width: 100%; border: 1px solid #aebbc6; padding: 11px; border-radius: 5px; font: inherit; }textarea { resize: vertical; }
+fieldset { border: 1px solid #dce3e9; border-radius: 6px; padding: 18px; margin: 20px 0; }legend { font-weight: 700; }
+button, .primary-button { font: inherit; cursor: pointer; border: 1px solid #28546b; border-radius: 5px; padding: 10px 16px; }.primary-button { background: #165c73; color: white; }.link-button { display: inline-block; text-decoration: none; }
+button:disabled { cursor: wait; opacity: .55; }.form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; align-items: center; }
+.initiative-item { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #e2e8ec; }
+.error-message { color: #8f1c26; background: #fff0f1; padding: 12px; border-radius: 5px; }table { width: 100%; border-collapse: collapse; margin: 18px 0; }th, td { text-align: left; padding: 12px; border-bottom: 1px solid #dce3e9; }thead { background: #edf3f6; }
+li { margin-bottom: 18px; }li p { margin: 6px 0; }details { margin: 20px 0; }summary { cursor: pointer; font-weight: 600; }
+@media(max-width: 600px) { .page-header, .initiative-item { align-items: flex-start; flex-direction: column; }.card { padding: 18px; }.navbar nav { font-size: 14px; } }

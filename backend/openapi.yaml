@@ -1,0 +1,169 @@
+openapi: 3.0.3
+
+info:
+  title: SWENG 861 Financial Insights API
+  version: 1.0.0
+  description: >
+    Backend API for managing authenticated financial insights
+    and importing validated U.S. Treasury Fiscal Data.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+
+  /health:
+    get:
+      summary: Check backend health
+      responses:
+        '200':
+          description: Server is running
+
+  /api/hello:
+    get:
+      summary: Test authenticated access
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Authenticated user
+        '401':
+          description: Unauthorized
+
+  /api/insights:
+    get:
+      summary: Get all financial insights owned by the authenticated user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Financial insights retrieved
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create a financial insight
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - description
+                - category
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                category:
+                  type: string
+                status:
+                  type: string
+                  example: Open
+      responses:
+        '201':
+          description: Financial insight created
+        '400':
+          description: Invalid request data
+        '401':
+          description: Unauthorized
+
+  /api/insights/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+
+    get:
+      summary: Get one financial insight by ID
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Financial insight retrieved
+        '401':
+          description: Unauthorized
+        '403':
+          description: User does not own the requested record
+        '404':
+          description: Financial insight not found
+
+    put:
+      summary: Update a financial insight
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - description
+                - category
+                - status
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                category:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: Financial insight updated
+        '400':
+          description: Invalid request data
+        '401':
+          description: Unauthorized
+        '403':
+          description: User does not own the record
+        '404':
+          description: Financial insight not found
+
+    delete:
+      summary: Delete a financial insight
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Financial insight deleted
+        '401':
+          description: Unauthorized
+        '403':
+          description: User does not own the record
+        '404':
+          description: Financial insight not found
+
+  /api/external/treasury-debt:
+    get:
+      summary: Retrieve, validate, and persist U.S. Treasury debt data
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Treasury data retrieved, validated, and saved
+        '401':
+          description: Unauthorized
+        '502':
+          description: Invalid response from third-party API
+        '500':
+          description: Server or persistence error
+
+components:
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
